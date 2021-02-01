@@ -1,0 +1,86 @@
+{
+    "sealOptions": [
+        {
+            "regKeysToDelete": [
+                {
+                    "key": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\SharedAccess\\Parameters\\FirewallPolicy\\RestrictedServices\\Configurable\\System",
+                    "value": "novalue"
+                },
+                {
+                    "key": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\SharedAccess\\Parameters\\FirewallPolicy\\RestrictedServices\\Configurable\\System",
+                    "value": "novalue"
+                },
+                {
+                    "key": "HKLM:\\Software\\Wow6432Node\\Sophos\\Messaging System\\Router\\Private",
+                    "value": "pkc"
+                },
+                {
+                    "key": "HKLM:\\Software\\Wow6432Node\\Sophos\\Messaging System\\Router\\Private",
+                    "value": "pkp"
+                },
+                {
+                    "key": "HKLM:\\Software\\Wow6432Node\\Sophos\\Remote Management System\\ManagementAgent\\Private",
+                    "value": "pkp"
+                },
+                {
+                    "key": "HKLM:\\Software\\Wow6432Node\\Sophos\\Remote Management System\\ManagementAgent\\Private",
+                    "value": "pkc"
+                },
+                {
+                    "key": "HKLM:\\SOFTWARE\\citrix\\VirtualDesktopAgent",
+                    "value": "ListOfDDCs"
+                },
+                {
+                    "key": "HKLM:\\SOFTWARE\\WOW6432Node\\citrix\\VirtualDesktopAgent",
+                    "value": "ListOfDDCs"
+                }
+            ],
+            "regKeysToAdd": [
+                {
+                    "key": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\SharedAccess\\Parameters\\FirewallPolicy\\RestrictedServices\\Configurable\\System",
+                    "value": "novalue"
+                }
+            ],
+            "servicesToCheck": [
+                {
+                    "name": "smstsmgr",
+                    "status": "disabled"
+                },
+                {
+                    "name": "ccmexec",
+                    "status": "disabled"
+                },
+                {
+                    "name": "Norskale Agent Host Service",
+                    "status": "disabled"
+                }
+            ],
+            "filesToDelete": [
+                {
+                    "path": "C:\\ProgramData\\Sophos\\AutoUpdate\\Logs\\alc.log"
+                },
+                {
+                    "path": "C:\\ProgramData\\Sophos\\AutoUpdate\\Logs\\ALMon.sess2.20200430T150342.8399400.log"
+                }
+            ]
+        }
+    ],
+    "unsealOptions": [
+        {
+            "servicesToCheck": [
+                {
+                    "name": "smstsmgr",
+                    "status": "automatic"
+                },
+                {
+                    "name": "ccmexec",
+                    "status": "automatic"
+                },
+                {
+                    "name": "wuauserv",
+                    "status": "automatic"
+                }
+            ]
+        }
+    ]
+}
