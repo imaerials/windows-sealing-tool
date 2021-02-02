@@ -1,30 +1,29 @@
 $jsonFile = Get-Content .\settings.json | ConvertFrom-Json
 $sealOptions = $jsonFile.sealOptions 
-$operationsQtty= 0
+$operationsQtty = 0
 foreach ($setting in $sealOptions) {
     switch ($setting.psobject.Properties.Name) {
         regKeysToDelete {
             $operationsQtty += ($setting.regKeysToDelete.Count)
             foreach ($key in $setting.regKeysToDelete) {
-            
                 switch ($key.value) {
                     "novalue" {
                         Write-Host "deleting item $($key.key) "
                     }
+                    '' { write-host "no registry deletions here" }
                     default {
                         Write-Host "deleting item property $($key.value)"
                     }
                 }
-                
             }
         }
         regKeysToAdd { 
             $operationsQtty += ($setting.regKeysToAdd.Count)
 
-            Write-host "Adding Reg KEys" }
+            Write-host "Adding Reg KEys" 
+        }
         servicesToCheck { 
             $operationsQtty += ($setting.servicesToCheck.Count)
-
             foreach ($service in $setting.servicesToCheck) {
                 switch ($service.status) {
                     'disabled' {
@@ -47,6 +46,11 @@ foreach ($setting in $sealOptions) {
 
                         #Set-Service ($service.name) -StartupType Automatic
                     }
+                    '' {
+                        write-host "no service to check here" 
+
+                        #Set-Service ($service.name) -StartupType Automatic
+                    }
                 }
             }
         }
@@ -54,15 +58,18 @@ foreach ($setting in $sealOptions) {
             $operationsQtty += ($setting.filesToDelete.Count)
 
             foreach ($file in $setting.filesToDelete) {
-                Write-Host "removing file $($file.path)"
+                switch ($file.path) {
+                    '' { write-host "no files to delete here" }
+                    Default { Write-Host "removing file $($file.path)" }
+                }
+               
             }
             # Remove-Item -Path C:\Test\hidden-RO-file.txt -Force
         }
         Default {}
     }
 }
-write-host $operationsQtty
-
+ 
 
  
 

@@ -33,6 +33,10 @@
                 {
                     "key": "HKLM:\\SOFTWARE\\WOW6432Node\\citrix\\VirtualDesktopAgent",
                     "value": "ListOfDDCs"
+                },
+                {
+                    "key": "",
+                    "value": ""
                 }
             ],
             "regKeysToAdd": [
@@ -43,12 +47,12 @@
             ],
             "servicesToCheck": [
                 {
-                    "name": "smstsmgr",
-                    "status": "disabled"
+                    "name": "",
+                    "status": ""
                 },
                 {
-                    "name": "ccmexec",
-                    "status": "disabled"
+                    "name": "WSearch",
+                    "status": "stop"
                 },
                 {
                     "name": "Norskale Agent Host Service",
@@ -56,6 +60,9 @@
                 }
             ],
             "filesToDelete": [
+                {
+                    "path": ""
+                },
                 {
                     "path": "C:\\ProgramData\\Sophos\\AutoUpdate\\Logs\\alc.log"
                 },
@@ -69,16 +76,16 @@
         {
             "servicesToCheck": [
                 {
-                    "name": "smstsmgr",
-                    "status": "automatic"
+                    "name": "WSearch",
+                    "status": "stop"
                 },
                 {
                     "name": "ccmexec",
-                    "status": "automatic"
+                    "status": "start"
                 },
                 {
                     "name": "wuauserv",
-                    "status": "automatic"
+                    "status": "disabled"
                 }
             ]
         }
