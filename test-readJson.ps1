@@ -1,6 +1,24 @@
 $jsonFile = Get-Content .\settings.json | ConvertFrom-Json
 $sealOptions = $jsonFile.sealOptions 
-$operationsQtty = 0
+function count-operations {
+    Param(
+        [parameter(Mandatory=$true)]
+        [Object]$Operations 
+        )
+        $operationsQtty = 0;
+        foreach ($setting in $sealOptions) {
+            switch ($setting.psobject.Properties.Name) {
+                regKeysToDelete { $operationsQtty += ($setting.regKeysToDelete.Count)}
+                regKeysToAdd {  $operationsQtty += ($setting.regKeysToAdd.Count)}
+                servicesToCheck { $operationsQtty += ($setting.servicesToCheck.Count)}
+                filesToDelete { $operationsQtty += ($setting.filesToDelete.Count)}
+
+            }
+   
+            }
+            return $operationsQtty
+    
+}
 foreach ($setting in $sealOptions) {
     switch ($setting.psobject.Properties.Name) {
         regKeysToDelete {
@@ -66,17 +84,8 @@ foreach ($setting in $sealOptions) {
             }
             # Remove-Item -Path C:\Test\hidden-RO-file.txt -Force
         }
+        
         Default {}
     }
 }
  
-
- 
-
-function Seal-image {
-    Param(
-        [Parameter(Mandatory = $True)]
-        [Object[]]$configObj
-    )
-
-}
